@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import CountVectorizer
 
 #Phase-1
 #This dictionary maps the names of different data sources (yelp, amazon, imdb) to their respective file paths
@@ -51,3 +52,11 @@ sentences_train, sentences_test, y_train, y_test = train_test_split(sentences, y
 #print the first few training setences and labels
 print("Training setences:", sentences_train[:5])
 print("Training labels:", y_train[:5])
+
+vectorizer = CountVectorizer()
+vectorizer.fit(sentences_train)
+
+X_train = vectorizer.transform(sentences_train)
+X_test = vectorizer.transform(sentences_test)
+X_train
+print(X_train)
